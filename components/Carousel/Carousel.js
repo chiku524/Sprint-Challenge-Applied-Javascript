@@ -55,6 +55,7 @@ function carouselMaker(){
       carouselImages[index].style.display = 'none';
       index = index - 1;
       carouselImages[index].style.display = 'block';
+      unfade();
     } else {
       carouselImages[index].style.display = 'block';
     }
@@ -64,13 +65,26 @@ function carouselMaker(){
     if (index < 3) {
         carouselImages[index].style.display = 'none';
         index = index + 1;
-        carouselImages[index].style.display = 'flex';
+        carouselImages[index].style.display = 'block';
+        unfade();
     }
     else {
-        carouselImages[index].style.display = 'flex';
+        carouselImages[index].style.display = 'block';
     }
   }
-  
+
+  function unfade() {
+    var op = 0.1;  // initial opacity
+    carouselImages[index].style.display = 'block';
+    var timer = setInterval(function () {
+        if (op >= 1){
+            clearInterval(timer);
+        }
+        carouselImages[index].style.opacity = op;
+        op += op * 0.1;
+    }, 10);
+  }
+
 }
 
 carouselMaker();
